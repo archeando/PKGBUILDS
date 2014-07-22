@@ -2,12 +2,14 @@
 
 pkgname=fbht-git
 pkgver=r40.33248f0
-pkgrel=1
+pkgrel=2
 pkgdesc="A Facebook Hacking Tool"
 arch=('any')
 url='https://github.com/chinoogawa/fbht'
 license=('custom')
-depends=('python2' 'python2-mechanize' 'python2-networkx' 'python2-matplotlib' 'python2-numpy' 'python2-simplejson')
+depends=('python2' 'python2-mechanize' 'python2-networkx' 'python2-matplotlib' 
+         'python2-numpy' 'python2-simplejson' 'python2-pygraphviz'
+         'gephi')
 makedepends=('git')
 provides=('fbht')
 source=("git+https://github.com/chinoogawa/fbht.git")
