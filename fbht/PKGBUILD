@@ -1,32 +1,25 @@
 # Contributor: Miguel Aguilar <zodiac_es@yahoo.es
 
-pkgname=fbht-git
-pkgver=r40.33248f0
-pkgrel=2
+pkgname=fbht
+pkgver=3.0
+pkgrel=1
 pkgdesc="A Facebook Hacking Tool"
 arch=('any')
 url='https://github.com/chinoogawa/fbht'
 license=('custom')
 depends=('python2' 'python2-mechanize' 'python2-networkx' 'python2-matplotlib' 
-         'python2-numpy' 'python2-simplejson' 'python2-pygraphviz'
-         'gephi')
+         'python2-numpy' 'python2-simplejson' 'python2-pygraphviz')
 makedepends=('git')
-provides=('fbht')
-source=("git+https://github.com/chinoogawa/fbht.git")
-md5sums=('SKIP')
-
-pkgver() {
-  cd "$srcdir/fbht"
-  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
-}
-
+conflicts=('fbht-git')
+source=("https://github.com/chinoogawa/fbht/archive/V$pkgver.tar.gz")
+md5sums=('835d0c1590c1b7edc2547ffad9b36de8')
 
 prepare(){
-  grep -iRl 'python' "$srcdir/fbht" | xargs sed -i 's|#!.*/usr/bin/python|#!/usr/bin/python2|;s|#!.*/usr/bin/env python$|#!/usr/bin/env python2|'
+  grep -iRl 'python' "$pkgname-$pkgver" | xargs sed -i 's|#!.*/usr/bin/python|#!/usr/bin/python2|;s|#!.*/usr/bin/env python$|#!/usr/bin/env python2|'
 }
 
 package() {
-  cd "$srcdir/fbht"
+  cd "$pkgname-$pkgver"
 
   # Make base directories.
   install -dm755 "$pkgdir/usr/share/fbht"
